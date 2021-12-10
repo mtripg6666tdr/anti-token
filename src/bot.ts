@@ -11,6 +11,7 @@ export class AntiTokenBot {
       intents: [
         "GUILD_BANS",
         "GUILD_MESSAGES",
+        "GUILDS",
       ]
     });
 
@@ -50,19 +51,19 @@ export class AntiTokenBot {
   private async onMessage(message:discord.Message){
     if(message.content.match(/[a-zA-Z0-9_-]{23,28}\.[a-zA-Z0-9_-]{6,7}\.[a-zA-Z0-9_-]{27}/)){
       if(message.guild.ownerId === message.author.id || !message.deletable || !message.member.bannable){
-        message.reply({
+        await message.reply({
           content: "トークンが検出されましたが削除されませんでした",
           allowedMentions: {
             repliedUser: false
           }
-        })
-      }else{}
-    }else{
-      await message.delete();
-      await message.member.ban({
-        reason: `トークンの送信 (自動BAN by ${this.client.user.username})`
-      });
-      await message.channel.send("トークンが検出されたためBANされました");
+        });
+      }else{
+        await message.delete();
+        await message.member.ban({
+          reason: `トークンの送信 (自動BAN by ${this.client.user.username})`
+        });
+        await message.channel.send("トークンが検出されたためBANされました");
+      }
     }
   }
 

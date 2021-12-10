@@ -15,6 +15,7 @@
       "outFiles": [
         "${workspaceFolder}/**/*.js"
       ],
+      "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\node",
       "preLaunchTask": "npm: build"
     }
   ]
