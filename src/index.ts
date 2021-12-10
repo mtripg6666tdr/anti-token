@@ -1,3 +1,4 @@
+require("dotenv").config();
 import * as http from "http";
 import { AntiTokenBot } from "./bot";
 
