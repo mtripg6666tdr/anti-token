@@ -4,7 +4,7 @@ import { ignoreUnhandledRejection, sendMsgInGuild } from "./util";
 export class AntiTokenBot {
   private readonly client = null as discord.Client;
   
-  get clientId(){return this.client && this.client.user.id};
+  get clientId(){return this.client && this.client.user && this.client.user.id};
 
   constructor(){
     this.client = new discord.Client({
