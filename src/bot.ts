@@ -10,7 +10,6 @@ export class AntiTokenBot {
     this.client = new discord.Client({
       intents: [
         "GUILD_BANS",
-        "GUILD_MEMBERS",
         "GUILD_MESSAGES",
       ]
     });
