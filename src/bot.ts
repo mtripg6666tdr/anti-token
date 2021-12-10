@@ -16,9 +16,18 @@ export class AntiTokenBot {
     });
 
     this.client
+      .on("ready", () => ignoreUnhandledRejection(this.onReady()))
       .on("guildCreate", (guild) => ignoreUnhandledRejection(this.onGuildCreate(guild)))
       .on("messageCreate", (message) => ignoreUnhandledRejection(this.onMessage(message)))
       ;
+  }
+
+  private async onReady(){
+    console.log("discord bot is ready now");
+    this.client.user.setActivity({
+      type: "WATCHING",
+      name: "サーバーの安全を監視中 / " + this.client.guilds.cache.size + "サーバー"
+    });
   }
 
   private async onGuildCreate(guild:discord.Guild){
